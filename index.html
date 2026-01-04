@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .player {
+      position: relative;
+      width: 100%;
+      max-width: 720px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      background: black;
+    }
+
+    .btn {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 24px;
+      background: rgba(0,0,0,0.65);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #playBtn {
+      bottom: 20px;
+    }
+
+    #continueBtn {
+      bottom: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="player">
+    <video id="video"
+      poster="https://res.cloudinary.com/dtyitjzp3/image/upload/v1767518845/IMG_20260104_153140_dd5h5w.jpg"
+      preload="metadata">
+      <source src="https://res.cloudinary.com/dtvtvfnq9/video/upload/MOV_17665173842637445_s6aisc.mp4" type="video/mp4">
+    </video>
+
+    <button id="playBtn" class="btn">▶ Play Video</button>
+    <button id="continueBtn" class="btn">Continue Watching</button>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const playBtn = document.getElementById("playBtn");
+    const continueBtn = document.getElementById("continueBtn");
+
+    const SMARTLINK_1 = "https://encyclopediaskilled.com/dgqqxmts?key=dd4e682a13006c815ca00a7d946202db";
+    const SMARTLINK_2 = "https://encyclopediaskilled.com/b7tuc3gc?key=5a5f875b9cf2f34a524f304cf3969115";
+
+    let continueShown = false;
+
+    playBtn.onclick = () => {
+      window.open(SMARTLINK_1, "_blank");
+      playBtn.style.display = "none";
+      video.play();
+    };
+
+    video.addEventListener("timeupdate", () => {
+      if (video.currentTime >= 50 && !continueShown) {
+        video.pause();
+        continueBtn.style.display = "block";
+        continueShown = true;
+      }
+    });
+
+    continueBtn.onclick = () => {
+      window.open(SMARTLINK_2, "_blank");
+      continueBtn.style.display = "none";
+      video.currentTime = 50;
+      video.play();
+    };
+  </script>
+
+</body>
+</html>
